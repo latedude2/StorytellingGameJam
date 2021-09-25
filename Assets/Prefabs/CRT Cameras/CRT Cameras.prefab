@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7182058754285597549}
   - component: {fileID: 3058918705237867539}
-  - component: {fileID: 4320403936305320565}
+  - component: {fileID: 8726930933512702233}
   m_Layer: 0
   m_Name: Map Camera
   m_TagString: Untagged
@@ -75,14 +75,33 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &4320403936305320565
-AudioListener:
+--- !u!114 &8726930933512702233
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4400681456190038166}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 830fc0f8ddd38b9459a2f4083335b984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: 01d8936449b5fea44939e72ee505cd60, type: 3}
+  bend: 4
+  scanlineSize1: 200
+  scanlineSpeed1: -10
+  scanlineSize2: 20
+  scanlineSpeed2: -3
+  scanlineAmount: 0.05
+  vignetteSize: 1.9
+  vignetteSmoothness: 0.6
+  vignetteEdgeRound: 8
+  noiseSize: 75
+  noiseAmount: 0.05
+  redOffset: {x: 0, y: -0.01}
+  blueOffset: {x: 0, y: 0}
+  greenOffset: {x: 0, y: 0.01}
 --- !u!1 &5275150837483248269
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 845074115111076512}
   - component: {fileID: 5263519286253630009}
-  - component: {fileID: 1441236387104394041}
+  - component: {fileID: 7394119723853201294}
   m_Layer: 0
   m_Name: Stats Camera
   m_TagString: Untagged
@@ -158,14 +177,33 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &1441236387104394041
-AudioListener:
+--- !u!114 &7394119723853201294
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5275150837483248269}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 830fc0f8ddd38b9459a2f4083335b984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: 01d8936449b5fea44939e72ee505cd60, type: 3}
+  bend: 4
+  scanlineSize1: 200
+  scanlineSpeed1: -10
+  scanlineSize2: 20
+  scanlineSpeed2: -3
+  scanlineAmount: 0.05
+  vignetteSize: 1.9
+  vignetteSmoothness: 0.6
+  vignetteEdgeRound: 8
+  noiseSize: 75
+  noiseAmount: 0.05
+  redOffset: {x: 0, y: -0.01}
+  blueOffset: {x: 0, y: 0}
+  greenOffset: {x: 0, y: 0.01}
 --- !u!1 &8761213567746887559
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2883288746715581362}
   - component: {fileID: 5543424917453721974}
-  - component: {fileID: 2355084721022234159}
+  - component: {fileID: 483571964387399962}
   m_Layer: 0
   m_Name: Drone Camera
   m_TagString: Untagged
@@ -274,11 +312,30 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &2355084721022234159
-AudioListener:
+--- !u!114 &483571964387399962
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8872509435873004102}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 830fc0f8ddd38b9459a2f4083335b984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: 01d8936449b5fea44939e72ee505cd60, type: 3}
+  bend: 4
+  scanlineSize1: 200
+  scanlineSpeed1: -10
+  scanlineSize2: 20
+  scanlineSpeed2: -3
+  scanlineAmount: 0.05
+  vignetteSize: 1.9
+  vignetteSmoothness: 0.6
+  vignetteEdgeRound: 8
+  noiseSize: 75
+  noiseAmount: 0.05
+  redOffset: {x: 0, y: -0.01}
+  blueOffset: {x: 0, y: 0}
+  greenOffset: {x: 0, y: 0.01}
