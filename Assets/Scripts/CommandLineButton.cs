@@ -8,6 +8,9 @@ public class CommandLineButton : MonoBehaviour
 {
     TMP_InputField commandLine;
     TextMeshProUGUI commandScreen;
+    Rover rover;
+    float commandDelay = 2f;
+    string command;
 
     // Start is called before the first frame update
     void Start()
@@ -28,11 +31,18 @@ public class CommandLineButton : MonoBehaviour
     }
 
     public void SendCommand(){
-        if(commandLine.text != "")
+        PrintMessage(commandLine.text);
+        command = commandLine.text;
+        commandLine.text = "";
+        StartCoroutine(nameof(SendCommandWithDelay));
+    }
+
+    IEnumerator SendCommandWithDelay()
+    {
+        yield return new WaitForSeconds(commandDelay);
+        if(command != "")
         {
-            PrintMessage(commandLine.text);
-            InterpretMessage(commandLine.text);
-            commandLine.text = "";
+            InterpretMessage(command);
         }
     }
 
@@ -52,6 +62,19 @@ public class CommandLineButton : MonoBehaviour
                         PrintMessage("Incorrect argument format!");
                 }
                 break;
+            case "rotate":
+                if(CheckArgumentCount(arguments.Length, 2))
+                {
+                    if(int.TryParse(arguments[1], out _))
+                    {
+                        RotateCommand(Int32.Parse(arguments[1]));
+                    }
+                    else 
+                    {
+                        PrintMessage("Incorrect argument format!");
+                    }   
+                }                
+                break;
             case "defend":
                 if(CheckArgumentCount(arguments.Length, 1))
                     DefendCommand();
@@ -70,6 +93,11 @@ public class CommandLineButton : MonoBehaviour
     private void MoveCommand(int x, int y)
     {
         PrintMessage("Moving rover to: (" + x +  "," + y + ")");
+    }
+
+    void RotateCommand(int degrees)
+    {
+        PrintMessage("Rotating " + degrees + " degrees!");
     }
 
     private void DefendCommand()
