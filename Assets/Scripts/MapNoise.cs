@@ -14,7 +14,7 @@ public class MapNoise : MonoBehaviour
     private float offsetY = 0f;
 
     private int terrainHueMin = 30;
-    private int terrainSaturationMin = 60;
+    private int terrainSaturationMin = 40;
 
     private int terrainHueMax = 80;
     private int terrainSaturationMax = 100;
@@ -40,7 +40,6 @@ public class MapNoise : MonoBehaviour
         float sat = Random.Range((float)terrainSaturationMin/255, (float)terrainSaturationMax/255);
 
         convertedCol = Color.HSVToRGB(hue, sat, 1)*255;
-        Debug.Log(convertedCol);
     }
 
     Texture2D GenerateTexture()
@@ -60,8 +59,6 @@ public class MapNoise : MonoBehaviour
         return texture;
     }
     
-
-
     Color CalculateHeight(int x, int y)
     {
         float xCoordBig = (1 / bigFreqAmplitude) * (float)x / width * scale + offsetX;
