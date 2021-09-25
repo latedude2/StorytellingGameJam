@@ -7,8 +7,10 @@ using TMPro;
 public class CommandLineButton : MonoBehaviour
 {
     TMP_InputField commandLine;
-    TextMeshProUGUI commandScreen;\
+    TextMeshProUGUI commandScreen;
     Rover rover;
+    float commandDelay = 2f;
+    string command;
 
     // Start is called before the first frame update
     void Start()
@@ -29,11 +31,18 @@ public class CommandLineButton : MonoBehaviour
     }
 
     public void SendCommand(){
-        if(commandLine.text != "")
+        PrintMessage(commandLine.text);
+        command = commandLine.text;
+        commandLine.text = "";
+        StartCoroutine(nameof(SendCommandWithDelay));
+    }
+
+    IEnumerator SendCommandWithDelay()
+    {
+        yield return new WaitForSeconds(commandDelay);
+        if(command != "")
         {
-            PrintMessage(commandLine.text);
-            InterpretMessage(commandLine.text);
-            commandLine.text = "";
+            InterpretMessage(command);
         }
     }
 
