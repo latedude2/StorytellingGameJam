@@ -15,5 +15,7 @@ public class Rover : MonoBehaviour
         moving = 2,
         scanning = 3
     }
+
+    
     
 }
