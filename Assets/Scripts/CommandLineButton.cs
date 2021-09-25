@@ -93,6 +93,7 @@ public class CommandLineButton : MonoBehaviour
     private void MoveCommand(int x, int y)
     {
         PrintMessage("Moving rover to: (" + x +  "," + y + ")");
+        
     }
 
     void RotateCommand(int degrees)
