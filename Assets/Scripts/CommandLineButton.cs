@@ -58,7 +58,7 @@ public class CommandLineButton : MonoBehaviour
                 break;
             case "scan":
                 if(CheckArgumentCount(arguments.Length, 2))
-                    ScanCommand();
+                    ScanCommand(arguments[1]);
                 break;
             default:
                 PrintMessage("Command does not exist");
