@@ -22,9 +22,9 @@ public class CommandLineButton : MonoBehaviour
         {
             SendCommand();
         }
+        //keep focus on the input field
         commandLine.Select();
         commandLine.ActivateInputField();
-        
     }
 
     public void SendCommand(){
@@ -56,11 +56,48 @@ public class CommandLineButton : MonoBehaviour
                 if(CheckArgumentCount(arguments.Length, 1))
                     DefendCommand();
                 break;
+            case "scan":
+                if(CheckArgumentCount(arguments.Length, 2))
+                    ScanCommand();
+                break;
             default:
                 PrintMessage("Command does not exist");
                 break;
         }
         
+    }
+
+    private void MoveCommand(int x, int y)
+    {
+        PrintMessage("Moving rover to: (" + x +  "," + y + ")");
+    }
+
+    private void DefendCommand()
+    {
+        PrintMessage("Rover defending.");
+    }
+
+    private void ScanCommand(string scanTarget)
+    {
+        switch (scanTarget){
+            case "enemy":
+                ScanForEnemies();
+                break;
+            case "mineral":
+                ScanForMinerals();
+                break;
+            default:
+                PrintMessage("Unknown scan target!");
+                break;
+        }
+    }
+
+    void ScanForEnemies(){
+        PrintMessage("Rover Scanning for enemies!");
+    }
+
+    void ScanForMinerals(){
+        PrintMessage("Rover Scanning for minerals!");
     }
 
     private bool CheckArgumentCount(int actual, int expected)
@@ -78,22 +115,9 @@ public class CommandLineButton : MonoBehaviour
         return true;
     }
 
-    private void MoveCommand(int x, int y)
-    {
-        PrintMessage("Moving rover to: (" + x +  "," + y + ")");
-    }
-
-    private void DefendCommand()
-    {
-        PrintMessage("Rover defending.");
-    }
-
     private void PrintMessage(string message)
     {
         commandScreen.text += "\n";
         commandScreen.text += message;
     }
-    
-    
-
 }
