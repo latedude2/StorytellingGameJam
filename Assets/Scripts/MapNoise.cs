@@ -13,7 +13,13 @@ public class MapNoise : MonoBehaviour
     private float offsetX = 0f;
     private float offsetY = 0f;
 
+    private int terrainHueMin = 30;
+    private int terrainSaturationMin = 60;
 
+    private int terrainHueMax = 80;
+    private int terrainSaturationMax = 100;
+
+    Color convertedCol = new Color(255,255,255);
 
     void Start()
     {
@@ -29,6 +35,12 @@ public class MapNoise : MonoBehaviour
         scale = Random.Range(1f, 1.5f);
         offsetX = Random.Range(0f, 99999f);
         offsetY = Random.Range(0f, 99999f);
+
+        float hue = Random.Range((float)terrainHueMin/255, (float)terrainHueMax/255);
+        float sat = Random.Range((float)terrainSaturationMin/255, (float)terrainSaturationMax/255);
+
+        convertedCol = Color.HSVToRGB(hue, sat, 1)*255;
+        Debug.Log(convertedCol);
     }
 
     Texture2D GenerateTexture()
@@ -43,7 +55,6 @@ public class MapNoise : MonoBehaviour
                 texture.SetPixel(x, y, color);
             }
         }
-
 
         texture.Apply();
         return texture;
@@ -68,7 +79,7 @@ public class MapNoise : MonoBehaviour
 
         Color posCol = new Color(perlinCol, perlinCol, perlinCol);
         
-        posCol = new Color(perlinCol * 1.02f, perlinCol * 1.28f, perlinCol * 1.02f);
+        posCol = new Color(perlinCol * (convertedCol.r/255), perlinCol * (convertedCol.g/255), perlinCol * (convertedCol.b/255));
 
         return posCol;
     }
