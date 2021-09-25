@@ -99,6 +99,7 @@ public class CommandLineButton : MonoBehaviour
     void RotateCommand(int degrees)
     {
         PrintMessage("Rotating " + degrees + " degrees!");
+        rover.Rotate(degrees);
     }
 
     private void DefendCommand()
