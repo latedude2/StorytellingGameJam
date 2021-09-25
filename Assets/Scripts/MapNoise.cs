@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class MapNoise : MonoBehaviour
 {
-    public int width = 256;
-    public int height = 256;
+    private int width = 200;
+    private int height = 200;
+    private int[,] heightMap = new int[200, 200];
 
     public float bigFreqAmplitude = 1f;
     public float mediumFreqAmplitude = 1f;
@@ -51,6 +52,7 @@ public class MapNoise : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 Color color = CalculateHeight(x, y);
+                heightMap[x,y] = color.grayscale;
                 texture.SetPixel(x, y, color);
             }
         }
