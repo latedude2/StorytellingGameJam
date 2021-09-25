@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class Rover : MonoBehaviour
 {
+    public enum RoverStatus
+    {
+        defending = 1,
+        moving = 2,
+        scanning = 3
+    }
+
     float fuel = 100f;
     float hullHealth = 100f;
     float wheelHealth = 100f;
     float ammo = 100f;
 
     [SerializeField] private float movementSpeed = 1f;
-    private bool moving = false;
-
-    public enum roverStatus
-    {
-        defending = 1,
-        moving = 2,
-        scanning = 3
-    }
+    RoverStatus roverStatus = RoverStatus.defending;
 
     void Start()
     {
@@ -27,9 +27,13 @@ public class Rover : MonoBehaviour
 
     void Update()
     {
-        if (moving)
+        if (roverStatus == RoverStatus.moving)
         {
             gameObject.transform.position += gameObject.transform.forward * movementSpeed * Time.deltaTime;
+        }
+        if(hullHealth < 0)
+        {
+            EndGameHull();
         }
     }
 
@@ -37,8 +41,20 @@ public class Rover : MonoBehaviour
     {
         float posXStart = gameObject.transform.position.x;
         float posYStart = gameObject.transform.position.y;
+        roverStatus = RoverStatus.moving;
+    }
 
-        moving = true;
+    public void ReceiveHullDamage(float damage){
+        hullHealth -= damage;
+    }
+
+    void EndGameHull()
+    {
+        Debug.Log("Game Over because hull rip");
+    }
+
+    void Defend(){
+
     }
     
 }

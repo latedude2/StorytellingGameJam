@@ -5,7 +5,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     Rover rover;
+    private float damage = 1f;
+    private float health = 10f;
     float chaseDistance = 0.3f;
+    float attackDistance = 0.05f;
     private float speed = 0.05f;
     private float mapSize;
 
@@ -18,10 +21,11 @@ public class Enemy : MonoBehaviour
     }
 
     void Update() {
-        wrapAroundMap();
+        WrapAroundMap();
         ChaseRover();
+        Attack();
     }
-    void wrapAroundMap(){
+    void WrapAroundMap(){
 
         if(transform.position.x < -mapSize)
         {
@@ -43,13 +47,21 @@ public class Enemy : MonoBehaviour
 
     void ChaseRover()
     {
-        //Debug.Log(Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(rover.transform.position.x, rover.transform.position.y)));
         Vector2 roverPosition = new Vector2(rover.transform.position.x, rover.transform.position.y);
         Vector2 enemyPosition = new Vector2(transform.position.x, transform.position.y);
         if(Vector2.Distance(enemyPosition, roverPosition) < chaseDistance)
         {
             Vector2 thrust = roverPosition - enemyPosition;
             GetComponent<Rigidbody2D>().velocity = thrust.normalized * speed;
+        }
+    }
+
+    void Attack(){
+        Vector2 roverPosition = new Vector2(rover.transform.position.x, rover.transform.position.y);
+        Vector2 enemyPosition = new Vector2(transform.position.x, transform.position.y);
+        if(Vector2.Distance(enemyPosition, roverPosition) < attackDistance)
+        {
+            rover.ReceiveHullDamage(damage);
         }
     }
 }
