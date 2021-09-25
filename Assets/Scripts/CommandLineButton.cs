@@ -1,0 +1,99 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+using TMPro;
+
+public class CommandLineButton : MonoBehaviour
+{
+    TMP_InputField commandLine;
+    TextMeshProUGUI commandScreen;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+        commandLine = transform.parent.Find("InputField").GetComponent<TMP_InputField>();
+        commandScreen = transform.parent.Find("PreviousCommands").GetComponent<TextMeshProUGUI>();
+    }
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            SendCommand();
+        }
+        commandLine.Select();
+        commandLine.ActivateInputField();
+        
+    }
+
+    public void SendCommand(){
+        if(commandLine.text != "")
+        {
+            PrintMessage(commandLine.text);
+            InterpretMessage(commandLine.text);
+            commandLine.text = "";
+        }
+    }
+
+    private void InterpretMessage(string message){
+        string[] arguments = message.Split(' '); 
+        switch (arguments[0]){
+            case "move":
+                if(CheckArgumentCount(arguments.Length, 3))
+                {
+                    if(int.TryParse(arguments[1], out _) & int.TryParse(arguments[2], out _))
+                    {
+                        int x = Int32.Parse(arguments[1]);
+                        int y = Int32.Parse(arguments[2]);
+                        MoveCommand(x, y);
+                    }
+                    else
+                        PrintMessage("Incorrect argument format!");
+                }
+                break;
+            case "defend":
+                if(CheckArgumentCount(arguments.Length, 1))
+                    DefendCommand();
+                break;
+            default:
+                PrintMessage("Command does not exist");
+                break;
+        }
+        
+    }
+
+    private bool CheckArgumentCount(int actual, int expected)
+    {
+        if(expected < actual)
+        {
+            PrintMessage("Too many arguments!");
+            return false;
+        }
+        else if (expected > actual)
+        {
+            PrintMessage("Missing arguments!");
+            return false;
+        }
+        return true;
+    }
+
+    private void MoveCommand(int x, int y)
+    {
+        PrintMessage("Moving rover to: (" + x +  "," + y + ")");
+    }
+
+    private void DefendCommand()
+    {
+        PrintMessage("Rover defending.");
+    }
+
+    private void PrintMessage(string message)
+    {
+        commandScreen.text += "\n";
+        commandScreen.text += message;
+    }
+    
+    
+
+}
