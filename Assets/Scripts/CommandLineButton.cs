@@ -15,7 +15,8 @@ public class CommandLineButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        rover = GameObject.FindWithTag("Rover").GetComponent<Rover>();
+
         commandLine = transform.parent.Find("InputField").GetComponent<TMP_InputField>();
         commandScreen = transform.parent.Find("PreviousCommands").GetComponent<TextMeshProUGUI>();
     }
@@ -50,13 +51,12 @@ public class CommandLineButton : MonoBehaviour
         string[] arguments = message.Split(' '); 
         switch (arguments[0]){
             case "move":
-                if(CheckArgumentCount(arguments.Length, 3))
+                if(CheckArgumentCount(arguments.Length, 2))
                 {
-                    if(int.TryParse(arguments[1], out _) & int.TryParse(arguments[2], out _))
+                    if(int.TryParse(arguments[1], out _))
                     {
                         int x = Int32.Parse(arguments[1]);
-                        int y = Int32.Parse(arguments[2]);
-                        MoveCommand(x, y);
+                        MoveCommand(x);
                     }
                     else
                         PrintMessage("Incorrect argument format!");
@@ -90,10 +90,10 @@ public class CommandLineButton : MonoBehaviour
         
     }
 
-    private void MoveCommand(int x, int y)
+    private void MoveCommand(int x)
     {
-        PrintMessage("Moving rover to: (" + x +  "," + y + ")");
-        
+        PrintMessage("Moving rover " + x + " units forward");
+        rover.Move(x);
     }
 
     void RotateCommand(int degrees)
