@@ -7,7 +7,8 @@ using TMPro;
 public class CommandLineButton : MonoBehaviour
 {
     TMP_InputField commandLine;
-    TextMeshProUGUI commandScreen;
+    TextMeshProUGUI commandScreen;\
+    Rover rover;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +53,19 @@ public class CommandLineButton : MonoBehaviour
                         PrintMessage("Incorrect argument format!");
                 }
                 break;
+            case "rotate":
+                if(CheckArgumentCount(arguments.Length, 2))
+                {
+                    if(int.TryParse(arguments[1], out _))
+                    {
+                        RotateCommand(Int32.Parse(arguments[1]));
+                    }
+                    else 
+                    {
+                        PrintMessage("Incorrect argument format!");
+                    }   
+                }                
+                break;
             case "defend":
                 if(CheckArgumentCount(arguments.Length, 1))
                     DefendCommand();
@@ -70,6 +84,11 @@ public class CommandLineButton : MonoBehaviour
     private void MoveCommand(int x, int y)
     {
         PrintMessage("Moving rover to: (" + x +  "," + y + ")");
+    }
+
+    void RotateCommand(int degrees)
+    {
+        PrintMessage("Rotating " + degrees + " degrees!");
     }
 
     private void DefendCommand()
