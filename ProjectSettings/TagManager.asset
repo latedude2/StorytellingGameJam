@@ -42,3 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Status Icons
+    uniqueID: 3354171633
+    locked: 0
+  - name: Status Bars
+    uniqueID: 3317701087
+    locked: 0

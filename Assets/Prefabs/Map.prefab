@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 794399850626282295}
   - component: {fileID: 794399850626282294}
   - component: {fileID: 794399850626282289}
+  - component: {fileID: 8892598059217832234}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -198,3 +199,16 @@ MonoBehaviour:
   bigFreqAmplitude: 1
   mediumFreqAmplitude: 0.5
   lowFreqAmplitude: 0.25
+--- !u!114 &8892598059217832234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794399850626282288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f56f3c61b6cc2e40835e8fe79f67d30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 7259222098616313671, guid: 6c0ad81b9d9010f468fe33c97547472d, type: 3}
