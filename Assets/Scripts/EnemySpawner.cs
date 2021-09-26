@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     GameObject enemyPrefab;
     int enemyCount = 10;
     float mapRadius;
+    float yModifier = 0.7f;
     float spawnInterval = 20f;
 
     // Start is called before the first frame update
@@ -27,22 +28,22 @@ public class EnemySpawner : MonoBehaviour
             if(Random.value > 0.5f)     
             {
                 //spawn south
-                Instantiate(enemyPrefab, new Vector3(Random.Range(-mapRadius, mapRadius), -mapRadius, -1), Quaternion.identity, transform);
+                Instantiate(enemyPrefab, new Vector3(Random.Range(-mapRadius, mapRadius), -mapRadius*yModifier, -1), Quaternion.identity, transform);
             }
             else {
                 //spawn north
-                Instantiate(enemyPrefab, new Vector3(Random.Range(-mapRadius, mapRadius), mapRadius, -1), Quaternion.identity, transform);
+                Instantiate(enemyPrefab, new Vector3(Random.Range(-mapRadius, mapRadius), mapRadius*yModifier, -1), Quaternion.identity, transform);
             }
         }
         else{
             if(Random.value > 0.5f)     
             {
                 //spawn west
-                Instantiate(enemyPrefab, new Vector3(-mapRadius,Random.Range(-mapRadius, mapRadius), -1), Quaternion.identity, transform);
+                Instantiate(enemyPrefab, new Vector3(-mapRadius,Random.Range(-mapRadius*yModifier, mapRadius*yModifier), -1), Quaternion.identity, transform);
             }
             else {
                 //spawn east
-                Instantiate(enemyPrefab, new Vector3(mapRadius,Random.Range(-mapRadius, mapRadius), -1), Quaternion.identity, transform);
+                Instantiate(enemyPrefab, new Vector3(mapRadius,Random.Range(-mapRadius*yModifier, mapRadius*yModifier), -1), Quaternion.identity, transform);
             }
 
         }

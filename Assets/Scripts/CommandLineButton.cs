@@ -89,8 +89,8 @@ public class CommandLineButton : MonoBehaviour
                     DefendCommand();
                 break;
             case "scan":
-                if(CheckArgumentCount(arguments.Length, 2))
-                    ScanCommand(arguments[1]);
+                if(CheckArgumentCount(arguments.Length, 1))
+                    ScanForMinerals();
                 break;
             default:
                 PrintMessage("< Command does not exist");
@@ -116,7 +116,7 @@ public class CommandLineButton : MonoBehaviour
         PrintMessage("< Rover defending.");
         rover.DefensiveStance();
     }
-
+    //Unused
     private void ScanCommand(string scanTarget)
     {
         switch (scanTarget){
