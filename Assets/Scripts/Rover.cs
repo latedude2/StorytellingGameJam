@@ -120,16 +120,19 @@ public class Rover : MonoBehaviour
         {
             if (wheelHealth <= 0)
             {
-                EndGameWheels();
+                GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Rover treads critical!");
+                Invoke(nameof(EndGameWheels), 4.0f);
             } else
             {
-                EndGameHull();
+                GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Rover hull critical!");
+                Invoke(nameof(EndGameHull), 4.0f);
             }
         }
 
         if(fuel <= 0)
         {
-            EndGameFuel();
+            GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Out of fuel!");
+            Invoke(nameof(EndGameFuel), 4.0f);
         }
     }
 
