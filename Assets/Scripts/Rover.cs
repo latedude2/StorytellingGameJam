@@ -213,7 +213,7 @@ public class Rover : MonoBehaviour
                 {
                     enemy.GetComponent<Enemy>().TakeDamage(attack * Time.deltaTime);
                 }
-                ammo -= attack * Time.deltaTime;
+                ammo -= 1.6f * Time.deltaTime;
                 fuel -= 0.3f * Time.deltaTime;
                 asb.value = 9 - (int)(ammo / 10);
                 return;
