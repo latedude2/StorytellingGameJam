@@ -67,7 +67,7 @@ public class Rover : MonoBehaviour
             {
                 WheelDamage();
                 speed *= terrainSpeedMod;
-                RotateDroneDisplay(Random.Range(-1f, 1f));
+                RotateDroneDisplay(Random.Range(-2f, 2f));
             } else
             {
                 RotateDroneDisplay(0f);
@@ -140,9 +140,7 @@ public class Rover : MonoBehaviour
 
     void RotateDroneDisplay(float value)
     {
-        //gameObject.transform.rotation.z = value;
-        //gameObject.transform.Rotate(Vector3.forward * Time.deltaTime);
-        droneDisplay.transform.Rotate(0, 0, value, Space.Self);
+        droneDisplay.transform.eulerAngles = new Vector3(0,0,value);
     }
 
     public void Rotate(int degrees)
