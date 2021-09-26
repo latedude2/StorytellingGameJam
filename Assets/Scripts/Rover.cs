@@ -245,7 +245,6 @@ public class Rover : MonoBehaviour
         roverStatus = RoverStatus.scanningWater;
 
         float distanceToWater = Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(waterX, waterY));
-        Debug.Log("Distance to water: " + distanceToWater);
         int percentage = 100 - (int)(100 *(distanceToWater / 2f));
         if (percentage < 0)
         {

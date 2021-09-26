@@ -45,7 +45,14 @@ public class CommandLineButton : MonoBehaviour
         yield return new WaitForSeconds(commandDelay);
         if(myCommand != "")
         {
-            InterpretMessage(myCommand);
+            if(UnityEngine.Random.value < 0.85f)
+            {
+                InterpretMessage(myCommand);
+            }
+            else
+            {
+                PrintMessage("< Message transmission failed! Try again.");
+            }
         }
     }
 
