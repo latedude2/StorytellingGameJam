@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class Rover : MonoBehaviour
 {
@@ -42,10 +43,14 @@ public class Rover : MonoBehaviour
     private EnemyDisplay enemyDisplay;
 
     MapNoise map;
+    Bloom robotCamGlow;
+    GameObject droneDisplay;
 
     void Start()
     {
         map = GameObject.FindWithTag("Map").GetComponent<MapNoise>();
+        GameObject.FindWithTag("RoverCamGlow").GetComponent<PostProcessVolume>().profile.TryGetSettings(out robotCamGlow);
+        droneDisplay = GameObject.FindWithTag("DroneDisplay");
 
         enemyDisplay = transform.parent.GetComponent<EnemyDisplay>();
         gameObject.transform.position = new Vector3(Random.Range(-.4f, .4f), Random.Range(-.4f, .4f), -3);
@@ -57,11 +62,15 @@ public class Rover : MonoBehaviour
         Defend();
         if (roverStatus == RoverStatus.moving)
         {
-            Vector3 speed = gameObject.transform.up * movementSpeed * Time.deltaTime;
-            if (TerrainValue() < .2f)
+            Vector3 speed = gameObject.transform.up * movementSpeed * (.5f + wheelHealth/200) * Time.deltaTime;
+            if (TerrainValue() < .25f)
             {
                 WheelDamage();
                 speed *= terrainSpeedMod;
+                RotateDroneDisplay(Random.Range(-2f, 2f));
+            } else
+            {
+                RotateDroneDisplay(0f);
             }
             gameObject.transform.position += speed;
             
@@ -93,7 +102,7 @@ public class Rover : MonoBehaviour
             }
         }
 
-        if(hullHealth < 0)
+        if(hullHealth <= 0)
         {
             EndGameHull();
         }
@@ -119,7 +128,19 @@ public class Rover : MonoBehaviour
     {
         terrainSpeedMod = TerrainValue()*2;
 
-        wheelHealth -= terrainSpeedMod;
+        wheelHealth -= terrainSpeedMod * 0.05f;
+        if (wheelHealth < 0)
+        {
+            wheelHealth = 0;
+            ReceiveHullDamage(terrainSpeedMod*0.05f);
+        }
+
+        robotCamGlow.color.value = new Color(1-(wheelHealth/100),0+(wheelHealth/100),0);
+    }
+
+    void RotateDroneDisplay(float value)
+    {
+        droneDisplay.transform.eulerAngles = new Vector3(0,0,value);
     }
 
     public void Rotate(int degrees)
