@@ -54,6 +54,7 @@ public class Rover : MonoBehaviour
 
     float waterX;
     float waterY;
+    bool gameEnded = false;
 
 
     void Start()
@@ -78,70 +79,77 @@ public class Rover : MonoBehaviour
 
     void Update()
     {
-        Defend();
-        if (roverStatus == RoverStatus.moving)
-        {
-            Vector3 speed = gameObject.transform.up * movementSpeed * (.5f + wheelHealth/200) * Time.deltaTime;
-            if (TerrainValue() < .4f)
+        if(!gameEnded)
+        {    
+            Defend();
+            if (roverStatus == RoverStatus.moving)
             {
-                WheelDamage();
-                speed *= terrainSpeedMod;
-                RotateDroneDisplay(Random.Range(178f, 182f));
-            } else
-            {
-                RotateDroneDisplay(180f);
+                Vector3 speed = gameObject.transform.up * movementSpeed * (.5f + wheelHealth/200) * Time.deltaTime;
+                if (TerrainValue() < .4f)
+                {
+                    WheelDamage();
+                    speed *= terrainSpeedMod;
+                    RotateDroneDisplay(Random.Range(178f, 182f));
+                } else
+                {
+                    RotateDroneDisplay(180f);
+                }
+                gameObject.transform.position += speed;
+                
+                float dist = Vector3.Distance(new Vector3(posXStart, posYStart, transform.position.z), transform.position);
+                if (dist >= moveDistance)
+                {
+                    roverStatus = RoverStatus.neutral;
+                }
             }
-            gameObject.transform.position += speed;
+
+            if(rotating)
+            {
+                if (rotationAngle < 0)
+                {
+                    gameObject.transform.Rotate(Vector3.forward * (rotationSpeed * Time.deltaTime));
+                } else
+                {
+                    gameObject.transform.Rotate(Vector3.forward * (-rotationSpeed * Time.deltaTime));
+                }
+                
+                prevAngle = angle;
+                angle = Quaternion.Angle(transform.rotation, Quaternion.Euler(0, 0, rotationStart));
+
+                angleCounter = angleCounter + Mathf.Abs(prevAngle - angle);
+
+                if (angleCounter >= Mathf.Abs(rotationAngle))
+                {
+                    rotating = false;
+                }
+            }
+
+            FuelConsumption();
+            WarningLights();
             
-            float dist = Vector3.Distance(new Vector3(posXStart, posYStart, transform.position.z), transform.position);
-            if (dist >= moveDistance)
-            {
-                roverStatus = RoverStatus.neutral;
-            }
-        }
-
-        if(rotating)
-        {
-            if (rotationAngle < 0)
-            {
-                gameObject.transform.Rotate(Vector3.forward * (rotationSpeed * Time.deltaTime));
-            } else
-            {
-                gameObject.transform.Rotate(Vector3.forward * (-rotationSpeed * Time.deltaTime));
-            }
             
-            prevAngle = angle;
-            angle = Quaternion.Angle(transform.rotation, Quaternion.Euler(0, 0, rotationStart));
 
-            angleCounter = angleCounter + Mathf.Abs(prevAngle - angle);
-
-            if (angleCounter >= Mathf.Abs(rotationAngle))
+            if(hullHealth < 5)
             {
-                rotating = false;
+                if (wheelHealth <= 0)
+                {
+                    gameEnded = true;
+                    GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Rover treads critical!");
+                    Invoke(nameof(EndGameWheels), 4.0f);
+                } else
+                {
+                    gameEnded = true;
+                    GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Rover hull critical!");
+                    Invoke(nameof(EndGameHull), 4.0f);
+                }
             }
-        }
 
-        FuelConsumption();
-        WarningLights();
-        
-
-        if(hullHealth < 5)
-        {
-            if (wheelHealth <= 0)
+            if(fuel <= 0)
             {
-                GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Rover treads critical!");
-                Invoke(nameof(EndGameWheels), 4.0f);
-            } else
-            {
-                GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Rover hull critical!");
-                Invoke(nameof(EndGameHull), 4.0f);
+                gameEnded = true;
+                GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Out of fuel!");
+                Invoke(nameof(EndGameFuel), 4.0f);
             }
-        }
-
-        if(fuel <= 0)
-        {
-            GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Out of fuel!");
-            Invoke(nameof(EndGameFuel), 4.0f);
         }
     }
 

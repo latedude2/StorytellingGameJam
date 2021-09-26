@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BadEndingWheels.unity
     guid: feb9b28d845b8c8428cd8dc22242b899
+  - enabled: 1
+    path: Assets/Scenes/BadEndingHull.unity
+    guid: 0972ec6837dfa334a9764232942ec6fa
+  - enabled: 1
+    path: Assets/Scenes/BadEndingFuel.unity
+    guid: 1eeb222b34b81d94084c8532e5904524
   m_configObjects: {}
