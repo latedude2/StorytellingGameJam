@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
     void Die(){
         if(health < 0f)
         {
-            Debug.Log("Enemy destroyed");
+            GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Enemy destroyed!");
             Destroy(gameObject);
         }
     }

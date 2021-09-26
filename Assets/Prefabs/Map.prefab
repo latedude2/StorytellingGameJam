@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02e2059683b7964ea91de18fa0966c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fuel: 100
+  hullHealth: 100
+  wheelHealth: 100
+  ammo: 100
   movementSpeed: 0.1
   rotationSpeed: 25
 --- !u!1 &794399850626282288
@@ -62,7 +66,7 @@ GameObject:
   - component: {fileID: 1218438591}
   m_Layer: 0
   m_Name: Map
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -245,7 +249,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 250799f493af6ab45b7e07eadccfd99b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b9b679844b10a2142adef5d88bed88bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
