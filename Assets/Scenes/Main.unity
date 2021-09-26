@@ -270,6 +270,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GlowManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1146995016557697768, guid: bca18f8fe4e126e48afbbbe8ee61a8af, type: 3}
+      propertyPath: m_TagString
+      value: RoverCamGlow
+      objectReference: {fileID: 0}
     - target: {fileID: 1146995016557697774, guid: bca18f8fe4e126e48afbbbe8ee61a8af, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -374,6 +378,10 @@ PrefabInstance:
     - target: {fileID: 4363169330279709053, guid: cf606c66ee233bf408e2c795620d1316, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363169330288882366, guid: cf606c66ee233bf408e2c795620d1316, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.23
       objectReference: {fileID: 0}
     - target: {fileID: 4363169330288882367, guid: cf606c66ee233bf408e2c795620d1316, type: 3}
       propertyPath: m_IsActive
