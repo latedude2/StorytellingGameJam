@@ -63,9 +63,12 @@ public class Rover : MonoBehaviour
         asb = GameObject.FindWithTag("ASBSlider").GetComponent<Slider>();
 
         enemyDisplay = transform.parent.GetComponent<EnemyDisplay>();
-        gameObject.transform.position = new Vector3(Random.Range(-.4f, .4f), Random.Range(-.4f, .4f), -3);
-        gameObject.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
-
+        float x = Random.Range(-40f, -20f) / 100;
+        float y =  Random.Range(-30f, 20f) / 100;
+        Debug.Log("X: " + x + " Y: " + y);
+        //gameObject.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
+        gameObject.transform.localPosition = new Vector3(x, y, -3);
+        Debug.Log("X: " + gameObject.transform.localPosition.x + " Y: " + gameObject.transform.localPosition.y);
         GenerateWaterLocation();
     }
 
@@ -138,7 +141,7 @@ public class Rover : MonoBehaviour
 
     public void GenerateWaterLocation()
     {
-        waterX = Random.Range(-0.4f, 0.4f);
+        waterX = Random.Range(0.2f, 0.4f);
         waterY = Random.Range(-0.3f, 0.2f);
     }
 
