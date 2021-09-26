@@ -9,6 +9,9 @@ TagManager:
   - Map
   - RoverCamGlow
   - DroneDisplay
+  - FSBSlider
+  - DSBSlider
+  - ASBSlider
   layers:
   - Default
   - TransparentFX

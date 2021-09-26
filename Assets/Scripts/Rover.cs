@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.UI;
 
 public class Rover : MonoBehaviour
 {
@@ -45,12 +46,17 @@ public class Rover : MonoBehaviour
     MapNoise map;
     Bloom robotCamGlow;
     GameObject droneDisplay;
+    Slider fsb, dsb, asb;
+
 
     void Start()
     {
         map = GameObject.FindWithTag("Map").GetComponent<MapNoise>();
         GameObject.FindWithTag("RoverCamGlow").GetComponent<PostProcessVolume>().profile.TryGetSettings(out robotCamGlow);
         droneDisplay = GameObject.FindWithTag("DroneDisplay");
+        fsb = GameObject.FindWithTag("FSBSlider").GetComponent<Slider>();
+        dsb = GameObject.FindWithTag("DSBSlider").GetComponent<Slider>();
+        asb = GameObject.FindWithTag("ASBSlider").GetComponent<Slider>();
 
         enemyDisplay = transform.parent.GetComponent<EnemyDisplay>();
         gameObject.transform.position = new Vector3(Random.Range(-.4f, .4f), Random.Range(-.4f, .4f), -3);
@@ -102,7 +108,7 @@ public class Rover : MonoBehaviour
             }
         }
 
-        if(hullHealth <= 0)
+        if(hullHealth < 5)
         {
             EndGameHull();
         }
@@ -156,6 +162,7 @@ public class Rover : MonoBehaviour
 
     public void ReceiveHullDamage(float damage){
         hullHealth -= damage;
+        dsb.value = 10 - (int)(hullHealth / 10);
     }
 
     void EndGameHull()
