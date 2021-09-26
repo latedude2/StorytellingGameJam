@@ -10,4 +10,10 @@ public class LoadGameScene : MonoBehaviour
         Debug.Log("Loading scene");
         SceneManager.LoadScene("Main");
     }
+
+    public void LoadMenu()
+    {
+        Debug.Log("Loading scene");
+        SceneManager.LoadScene("MainMenu");
+    }
 }
