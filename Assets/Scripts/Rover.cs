@@ -17,7 +17,7 @@ public class Rover : MonoBehaviour
     [SerializeField] float fuel = 100f;
     [SerializeField] float hullHealth = 100f;
     [SerializeField] float wheelHealth = 100f;
-    [SerializeField] float ammo = 100f;
+    [SerializeField] float ammo = 1000f;
 
     float combatDistance = 0.3f;
     float attack = 1f;
@@ -178,16 +178,15 @@ public class Rover : MonoBehaviour
                 {
                     enemy.GetComponent<Enemy>().TakeDamage(attack * Time.deltaTime);
                 }
+                ammo -= attack * Time.deltaTime;
                 return;
             }
         }
     }
 
-    void DefensiveStance()
+    public void DefensiveStance()
     {
         roverStatus = RoverStatus.defending;
-
-
     }
 
     public void ScanForEnemies(){
