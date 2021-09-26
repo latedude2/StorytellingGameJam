@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class MapNoise : MonoBehaviour
 {
-    private int width = 200;
-    private int height = 200;
-    [NonSerialized] public float[,] heightMap = new float[200, 200];
+    private int width = 1000;
+    private int height = 1000;
+    [System.NonSerialized] public float[,] heightMap = new float[1000, 1000];
 
     public float bigFreqAmplitude = 1f;
     public float mediumFreqAmplitude = 1f;

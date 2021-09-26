@@ -13,12 +13,13 @@ public class Rover : MonoBehaviour
         scanningWater = 5
     }
 
-    float fuel = 100f;
-    float hullHealth = 100f;
-    float wheelHealth = 100f;
-    float ammo = 100f;
+    [SerializeField] float fuel = 100f;
+    [SerializeField] float hullHealth = 100f;
+    [SerializeField] float wheelHealth = 100f;
+    [SerializeField] float ammo = 100f;
 
     [SerializeField] private float movementSpeed = 1f;
+    private float terrainSpeedMod = 1f;
     RoverStatus roverStatus = RoverStatus.neutral;
     private bool moving = false;
     private float posXStart;
@@ -51,12 +52,17 @@ public class Rover : MonoBehaviour
     {
         if (roverStatus == RoverStatus.moving)
         {
-            gameObject.transform.position += gameObject.transform.up * movementSpeed * Time.deltaTime;
+            Vector3 speed = gameObject.transform.up * movementSpeed * Time.deltaTime;
+            if (TerrainValue() < .2f)
+            {
+                WheelDamage();
+                speed *= terrainSpeedMod;
+            }
+            gameObject.transform.position += speed;
             
             float dist = Vector3.Distance(new Vector3(posXStart, posYStart, transform.position.z), transform.position);
             if (dist >= moveDistance)
             {
-                Debug.Log("Stopping");
                 roverStatus = RoverStatus.neutral;
             }
         }
@@ -90,17 +96,25 @@ public class Rover : MonoBehaviour
 
     public void Move(int x)
     {
-        float posXStart = gameObject.transform.position.x;
-        float posYStart = gameObject.transform.position.y;
+        posXStart = gameObject.transform.position.x;
+        posYStart = gameObject.transform.position.y;
         roverStatus = RoverStatus.moving;
         moveDistance = x * 0.1f;
     }
 
+    float TerrainValue()
+    {
+        int roverMapPosX = (int)((gameObject.transform.localPosition.x + .5f) * 1000);
+        int roverMapPosY = (int)((gameObject.transform.localPosition.y + .5f) * 1000);
+
+        return map.heightMap[roverMapPosX, roverMapPosY];
+    }
+
     void WheelDamage()
     {
-        float roverMapPosX = (gameObject.transform.position.x + .5f) * 200;
-        Debug.Log(roverMapPosX);
-        //map.heightMap 
+        terrainSpeedMod = TerrainValue()*2;
+
+        wheelHealth -= terrainSpeedMod;
     }
 
     public void Rotate(int degrees)
