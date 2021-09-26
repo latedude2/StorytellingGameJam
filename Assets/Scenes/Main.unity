@@ -248,6 +248,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 575248948}
     m_Modifications:
+    - target: {fileID: 689968634, guid: e71c87c5aed9da14982f286944f0fd51, type: 3}
+      propertyPath: noiseAmount
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3132415043188347855, guid: e71c87c5aed9da14982f286944f0fd51, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -927,7 +931,7 @@ Transform:
   - {fileID: 1447583265}
   - {fileID: 591310222}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1360250605
 PrefabInstance:
