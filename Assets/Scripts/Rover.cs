@@ -34,10 +34,7 @@ public class Rover : MonoBehaviour
     private float prevAngle = 0;
     private float angleCounter = 0;
 
-<<<<<<< HEAD
-=======
     private EnemyDisplay enemyDisplay;
->>>>>>> main
 
     void Start()
     {
