@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Rover : MonoBehaviour
 {
@@ -192,20 +193,7 @@ public class Rover : MonoBehaviour
         dsb.value = 9 - (int)(hullHealth / 10);
     }
 
-    void EndGameHull()
-    {
-        Debug.Log("Game Over because hull rip");
-    }
-
-    void EndGameWheels()
-    {
-        Debug.Log("Game Over because wheels rip");
-    }
-
-    void EndGameFuel()
-    {
-        Debug.Log("Game Over because fuel rip");
-    }
+    
 
     void Defend(){
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -263,9 +251,10 @@ public class Rover : MonoBehaviour
         {
             percentage = 0;
         }
-        if(percentage > 90) 
+        if(percentage > 85) 
         {
-            EndGameWin();
+            GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Water spring detected!");
+            Invoke(nameof(EndGameWin), 4f);
         }
         else{
             GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Ground humidity: " + percentage + "%");
@@ -274,6 +263,24 @@ public class Rover : MonoBehaviour
     
     void EndGameWin()
     {
-        GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Water spring detected!");
+        SceneManager.LoadScene("GoodEnd");
+    }
+
+    void EndGameHull()
+    {
+        Debug.Log("Game Over because hull rip");
+        SceneManager.LoadScene("BadEndingHull");
+    }
+
+    void EndGameWheels()
+    {
+        Debug.Log("Game Over because wheels rip");
+        SceneManager.LoadScene("BadEndingWheels");
+    }
+
+    void EndGameFuel()
+    {
+        Debug.Log("Game Over because fuel rip");
+        SceneManager.LoadScene("BadEndingFuel");
     }
 }
