@@ -204,7 +204,7 @@ public class Rover : MonoBehaviour
         hullHealth -= damage;
         dsb.value = 9 - (int)(hullHealth / 10);
 
-        RecentlyDamaged = 300;
+        RecentlyDamaged = 150;
     }
 
     void WarningLights()
