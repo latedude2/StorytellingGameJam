@@ -6,10 +6,11 @@ public class Rover : MonoBehaviour
 {
     public enum RoverStatus
     {
-        neutral = 1
+        neutral = 1,
         defending = 2,
         moving = 3,
-        scanning = 4
+        scanningEnemy = 4,
+        scanningWater = 5
     }
 
     float fuel = 100f;
@@ -33,9 +34,14 @@ public class Rover : MonoBehaviour
     private float prevAngle = 0;
     private float angleCounter = 0;
 
+<<<<<<< HEAD
+=======
+    private EnemyDisplay enemyDisplay;
+>>>>>>> main
 
     void Start()
     {
+        enemyDisplay = transform.parent.GetComponent<EnemyDisplay>();
         gameObject.transform.position = new Vector3(Random.Range(-.4f, .4f), Random.Range(-.4f, .4f), -1);
         gameObject.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
     }
@@ -112,6 +118,14 @@ public class Rover : MonoBehaviour
 
     }
 
+    public void ScanForEnemies(){
+        roverStatus = RoverStatus.scanningEnemy;
+        enemyDisplay.ShowEnemies();
+    }
+
+    public void ScanForWater(){
+        roverStatus = RoverStatus.scanningWater;
+    }
     
     
 }
