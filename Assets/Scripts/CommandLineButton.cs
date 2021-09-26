@@ -32,7 +32,7 @@ public class CommandLineButton : MonoBehaviour
     }
 
     public void SendCommand(){
-        PrintMessage(commandLine.text);
+        PrintMessage("> " + commandLine.text);
         command = commandLine.text;
         commandLine.text = "";
         StartCoroutine(nameof(SendCommandWithDelay));
@@ -148,7 +148,7 @@ public class CommandLineButton : MonoBehaviour
 
     private void PrintMessage(string message)
     {
-        commandScreen.text += "\n> ";
+        commandScreen.text += "\n";
         commandScreen.text += message;
     }
 }
