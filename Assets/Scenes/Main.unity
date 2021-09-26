@@ -323,10 +323,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 575248948}
     m_Modifications:
-    - target: {fileID: 1396581602, guid: cf606c66ee233bf408e2c795620d1316, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 50c6e1ddc5149824cb483d321f04d2ef, type: 2}
     - target: {fileID: 4363169330279709052, guid: cf606c66ee233bf408e2c795620d1316, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -445,33 +441,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ui-overlay
       objectReference: {fileID: 0}
-    - target: {fileID: 1392802442343692132, guid: 06d8c139c66d7234d9ba76502e5610fe, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4952087669138578587, guid: 06d8c139c66d7234d9ba76502e5610fe, type: 3}
-      propertyPath: m_DrawMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4952087669138578587, guid: 06d8c139c66d7234d9ba76502e5610fe, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4952087669138578587, guid: 06d8c139c66d7234d9ba76502e5610fe, type: 3}
-      propertyPath: m_MaskInteraction
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4952087669138578587, guid: 06d8c139c66d7234d9ba76502e5610fe, type: 3}
-      propertyPath: m_SpriteSortPoint
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5770694273209758333, guid: 06d8c139c66d7234d9ba76502e5610fe, type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5770694273209758333, guid: 06d8c139c66d7234d9ba76502e5610fe, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.93000007
       objectReference: {fileID: 0}
     - target: {fileID: 5770694273209758333, guid: 06d8c139c66d7234d9ba76502e5610fe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -483,7 +455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5770694273209758333, guid: 06d8c139c66d7234d9ba76502e5610fe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 5770694273209758333, guid: 06d8c139c66d7234d9ba76502e5610fe, type: 3}
       propertyPath: m_LocalRotation.w
