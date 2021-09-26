@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     float attackDistance = 0.05f;
     private float speed = 0.05f;
     private float mapSize;
+    private float yModifier = 0.7f;
 
     void Start() {
         rover = transform.parent.Find("Rover").GetComponent<Rover>();
@@ -35,13 +36,13 @@ public class Enemy : MonoBehaviour
         {
             transform.position = new Vector3(-mapSize, transform.position.y, transform.position.z);
         }
-        if(transform.position.y < -mapSize)
+        if(transform.position.y < -mapSize * yModifier)
         {
-            transform.position = new Vector3(transform.position.x, mapSize, transform.position.z);
+            transform.position = new Vector3(transform.position.x, mapSize * yModifier, transform.position.z);
         }
-        else if(transform.position.y > mapSize)
+        else if(transform.position.y > mapSize * yModifier)
         {
-            transform.position = new Vector3(transform.position.x, -mapSize, transform.position.z);
+            transform.position = new Vector3(transform.position.x, -mapSize * yModifier, transform.position.z);
         }
     }
 
