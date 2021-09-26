@@ -95,6 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02e2059683b7964ea91de18fa0966c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 0.2
+  rotationSpeed: 25
 --- !u!1 &794399850626282288
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,6 +110,7 @@ GameObject:
   - component: {fileID: 794399850626282294}
   - component: {fileID: 794399850626282289}
   - component: {fileID: 8892598059217832234}
+  - component: {fileID: 1218438591}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -192,8 +195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 027a4ec213ebe5146aeabc21853c89de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 200
-  height: 200
   bigFreqAmplitude: 1
   mediumFreqAmplitude: 0.5
   lowFreqAmplitude: 0.25
@@ -210,3 +211,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7259222098616313671, guid: 6c0ad81b9d9010f468fe33c97547472d, type: 3}
+--- !u!114 &1218438591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794399850626282288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b0140ce126c1f3429b11dec85bcb83c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyBlipPrefab: {fileID: 7259222098616313671, guid: 2dff5c1ccf15e1243a8756f1b74e99a4, type: 3}
