@@ -211,6 +211,7 @@ public class Rover : MonoBehaviour
                     enemy.GetComponent<Enemy>().TakeDamage(attack * Time.deltaTime);
                 }
                 ammo -= attack * Time.deltaTime;
+                fuel -= 0.3f * Time.deltaTime;
                 asb.value = 9 - (int)(ammo / 10);
                 return;
             }
@@ -226,7 +227,7 @@ public class Rover : MonoBehaviour
         }
         if (roverStatus == RoverStatus.defending) 
         {
-            fuel -= 0.3f * Time.deltaTime;
+            fuel -= 0.1f * Time.deltaTime;
         }
         fsb.value = 9 - (int)(fuel / 10);
     }
@@ -243,6 +244,8 @@ public class Rover : MonoBehaviour
 
     public void ScanForWater(){
         roverStatus = RoverStatus.scanningWater;
+
+        fuel -= 5;
 
         float distanceToWater = Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(waterX, waterY));
         Debug.Log("Distance to water: " + distanceToWater);
