@@ -18,6 +18,10 @@ public class Rover : MonoBehaviour
     [SerializeField] float wheelHealth = 100f;
     [SerializeField] float ammo = 100f;
 
+    float combatDistance = 0.3f;
+    float attack = 1f;
+    float defenceMultiplier = 5f;
+
     [SerializeField] private float movementSpeed = 1f;
     private float terrainSpeedMod = 1f;
     RoverStatus roverStatus = RoverStatus.neutral;
@@ -50,6 +54,7 @@ public class Rover : MonoBehaviour
 
     void Update()
     {
+        Defend();
         if (roverStatus == RoverStatus.moving)
         {
             Vector3 speed = gameObject.transform.up * movementSpeed * Time.deltaTime;
@@ -138,6 +143,29 @@ public class Rover : MonoBehaviour
     }
 
     void Defend(){
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject enemy in enemies)
+        {
+            float distance = Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.y), new Vector2(transform.position.x, transform.position.y));
+            if(distance < combatDistance)
+            {
+                if(roverStatus == RoverStatus.defending)
+                {
+                    enemy.GetComponent<Enemy>().TakeDamage(attack * defenceMultiplier * Time.deltaTime);
+                }
+                else 
+                {
+                    enemy.GetComponent<Enemy>().TakeDamage(attack * Time.deltaTime);
+                }
+                return;
+            }
+        }
+    }
+
+    void DefensiveStance()
+    {
+        roverStatus = RoverStatus.defending;
+
 
     }
 

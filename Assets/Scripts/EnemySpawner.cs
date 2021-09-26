@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     GameObject enemyPrefab;
     int enemyCount = 10;
     float mapRadius;
+    float spawnInterval = 20f;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
         for(int i = 0; i < enemyCount; i++){
             SpawnEnemy();
         }
+        InvokeRepeating(nameof(SpawnEnemy), spawnInterval, spawnInterval);
     }
 
     void SpawnEnemy(){
