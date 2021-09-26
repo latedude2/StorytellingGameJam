@@ -76,6 +76,8 @@ public class MapNoise : MonoBehaviour
 
         float perlinCol = Mathf.PerlinNoise(xCoord, yCoord);
 
+        perlinCol = Mathf.Round(perlinCol * 10) / 10;
+
         Color posCol = new Color(perlinCol, perlinCol, perlinCol);
         
         posCol = new Color(perlinCol * (convertedCol.r/255), perlinCol * (convertedCol.g/255), perlinCol * (convertedCol.b/255));
