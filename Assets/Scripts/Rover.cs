@@ -73,10 +73,10 @@ public class Rover : MonoBehaviour
             {
                 WheelDamage();
                 speed *= terrainSpeedMod;
-                RotateDroneDisplay(Random.Range(-2f, 2f));
+                RotateDroneDisplay(Random.Range(178f, 182f));
             } else
             {
-                RotateDroneDisplay(0f);
+                RotateDroneDisplay(180f);
             }
             gameObject.transform.position += speed;
             
@@ -108,9 +108,22 @@ public class Rover : MonoBehaviour
             }
         }
 
+        FuelConsumption();
+
         if(hullHealth < 5)
         {
-            EndGameHull();
+            if (wheelHealth <= 0)
+            {
+                EndGameWheels();
+            } else
+            {
+                EndGameHull();
+            }
+        }
+
+        if(fuel <= 0)
+        {
+            EndGameFuel();
         }
     }
 
@@ -162,12 +175,22 @@ public class Rover : MonoBehaviour
 
     public void ReceiveHullDamage(float damage){
         hullHealth -= damage;
-        dsb.value = 10 - (int)(hullHealth / 10);
+        dsb.value = 9 - (int)(hullHealth / 10);
     }
 
     void EndGameHull()
     {
         Debug.Log("Game Over because hull rip");
+    }
+
+    void EndGameWheels()
+    {
+        Debug.Log("Game Over because wheels rip");
+    }
+
+    void EndGameFuel()
+    {
+        Debug.Log("Game Over because fuel rip");
     }
 
     void Defend(){
@@ -177,7 +200,7 @@ public class Rover : MonoBehaviour
             float distance = Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.y), new Vector2(transform.position.x, transform.position.y));
             if(distance < combatDistance)
             {
-                if(roverStatus == RoverStatus.defending)
+                if(roverStatus == RoverStatus.defending || ammo > 0)
                 {
                     enemy.GetComponent<Enemy>().TakeDamage(attack * defenceMultiplier * Time.deltaTime);
                 }
@@ -186,9 +209,24 @@ public class Rover : MonoBehaviour
                     enemy.GetComponent<Enemy>().TakeDamage(attack * Time.deltaTime);
                 }
                 ammo -= attack * Time.deltaTime;
+                asb.value = 9 - (int)(ammo / 10);
                 return;
             }
         }
+    }
+
+    void FuelConsumption()
+    {
+        fuel -= 0.001f;
+        if(roverStatus == RoverStatus.moving || rotating)
+        {
+            fuel -= 0.002f;
+        }
+        if (roverStatus == RoverStatus.defending) 
+        {
+            fuel -= 0.004f;
+        }
+        fsb.value = 9 - (int)(fuel / 10);
     }
 
     public void DefensiveStance()
@@ -203,6 +241,7 @@ public class Rover : MonoBehaviour
 
     public void ScanForWater(){
         roverStatus = RoverStatus.scanningWater;
+        fuel -= 5f;
     }
     
     
