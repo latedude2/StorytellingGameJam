@@ -59,7 +59,7 @@ public class CommandLineButton : MonoBehaviour
                         MoveCommand(x);
                     }
                     else
-                        PrintMessage("Incorrect argument format!");
+                        PrintMessage("< Incorrect argument format!");
                 }
                 break;
             case "rotate":
@@ -71,7 +71,7 @@ public class CommandLineButton : MonoBehaviour
                     }
                     else 
                     {
-                        PrintMessage("Incorrect argument format!");
+                        PrintMessage("< Incorrect argument format!");
                     }   
                 }                
                 break;
@@ -84,7 +84,7 @@ public class CommandLineButton : MonoBehaviour
                     ScanCommand(arguments[1]);
                 break;
             default:
-                PrintMessage("Command does not exist");
+                PrintMessage("< Command does not exist");
                 break;
         }
         
@@ -92,19 +92,19 @@ public class CommandLineButton : MonoBehaviour
 
     private void MoveCommand(int x)
     {
-        PrintMessage("Moving rover " + x + " units forward");
+        PrintMessage("< Moving rover " + x + " units forward");
         rover.Move(x);
     }
 
     void RotateCommand(int degrees)
     {
-        PrintMessage("Rotating " + degrees + " degrees!");
+        PrintMessage("< Rotating " + degrees + " degrees!");
         rover.Rotate(degrees);
     }
 
     private void DefendCommand()
     {
-        PrintMessage("Rover defending.");
+        PrintMessage("< Rover defending.");
     }
 
     private void ScanCommand(string scanTarget)
@@ -117,30 +117,30 @@ public class CommandLineButton : MonoBehaviour
                 ScanForMinerals();
                 break;
             default:
-                PrintMessage("Unknown scan target!");
+                PrintMessage("< Unknown scan target!");
                 break;
         }
     }
 
     void ScanForEnemies(){
-        PrintMessage("Rover scanning for lifeforms!");
+        PrintMessage("< Rover scanning for lifeforms!");
         rover.ScanForEnemies();
     }
 
     void ScanForMinerals(){
-        PrintMessage("Rover scanning for minerals!");
+        PrintMessage("< Rover scanning for minerals!");
     }
 
     private bool CheckArgumentCount(int actual, int expected)
     {
         if(expected < actual)
         {
-            PrintMessage("Too many arguments!");
+            PrintMessage("< Too many arguments!");
             return false;
         }
         else if (expected > actual)
         {
-            PrintMessage("Missing arguments!");
+            PrintMessage("< Missing arguments!");
             return false;
         }
         return true;
@@ -148,7 +148,7 @@ public class CommandLineButton : MonoBehaviour
 
     private void PrintMessage(string message)
     {
-        commandScreen.text += "\n";
+        commandScreen.text += "\n> ";
         commandScreen.text += message;
     }
 }
