@@ -28,6 +28,7 @@ public class CommandLineButton : MonoBehaviour
         }
         //keep focus on the input field
         commandLine.Select();
+        commandLine.caretWidth = 10;
         commandLine.ActivateInputField();
     }
 
@@ -137,7 +138,8 @@ public class CommandLineButton : MonoBehaviour
     }
 
     void ScanForMinerals(){
-        PrintMessage("< Rover scanning for minerals!");
+        PrintMessage("< Rover scanning for water!");
+        rover.ScanForWater();
     }
 
     private bool CheckArgumentCount(int actual, int expected)
