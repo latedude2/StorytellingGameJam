@@ -28,6 +28,7 @@ public class CommandLineButton : MonoBehaviour
         }
         //keep focus on the input field
         commandLine.Select();
+        commandLine.caretWidth = 10;
         commandLine.ActivateInputField();
     }
 
