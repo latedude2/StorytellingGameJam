@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rover Body
+  m_Name: Body Rover
   m_Shader: {fileID: 4800000, guid: 81ec74c2b861d744291d4ec0cb03e1b4, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
