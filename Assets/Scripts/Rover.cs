@@ -91,7 +91,14 @@ public class Rover : MonoBehaviour
             {
                 RotateDroneDisplay(180f);
             }
-            gameObject.transform.position += speed;
+            if(CheckOutOfBounds(gameObject.transform.localPosition + speed))
+            {
+                GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Rover reached signal boundary, stopping!");
+                roverStatus = RoverStatus.neutral;
+            }
+            else{
+                gameObject.transform.position += speed;
+            }
             
             float dist = Vector3.Distance(new Vector3(posXStart, posYStart, transform.position.z), transform.position);
             if (dist >= moveDistance)
@@ -143,6 +150,16 @@ public class Rover : MonoBehaviour
             GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Out of fuel!");
             Invoke(nameof(EndGameFuel), 4.0f);
         }
+    }
+
+    bool CheckOutOfBounds(Vector3 position)
+    {
+        Debug.Log("x: " + position.x + " y: " + position.y);
+        if(position.x > 0.4f || position.x < -0.4f || position.y > 0.25f || position.y < -0.3f)
+        {
+            return true;
+        }
+        else return false;
     }
 
     public void GenerateWaterLocation()
