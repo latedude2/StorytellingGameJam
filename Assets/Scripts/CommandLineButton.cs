@@ -110,10 +110,10 @@ public class CommandLineButton : MonoBehaviour
     private void ScanCommand(string scanTarget)
     {
         switch (scanTarget){
-            case "enemy":
+            case "lifeform":
                 ScanForEnemies();
                 break;
-            case "mineral":
+            case "water":
                 ScanForMinerals();
                 break;
             default:
@@ -123,11 +123,12 @@ public class CommandLineButton : MonoBehaviour
     }
 
     void ScanForEnemies(){
-        PrintMessage("Rover Scanning for enemies!");
+        PrintMessage("Rover scanning for lifeforms!");
+        rover.ScanForEnemies();
     }
 
     void ScanForMinerals(){
-        PrintMessage("Rover Scanning for minerals!");
+        PrintMessage("Rover scanning for minerals!");
     }
 
     private bool CheckArgumentCount(int actual, int expected)
