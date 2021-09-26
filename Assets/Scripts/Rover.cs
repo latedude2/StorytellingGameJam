@@ -33,6 +33,7 @@ public class Rover : MonoBehaviour
     private float prevAngle = 0;
     private float angleCounter = 0;
 
+
     void Start()
     {
         gameObject.transform.position = new Vector3(Random.Range(-.4f, .4f), Random.Range(-.4f, .4f), -1);
