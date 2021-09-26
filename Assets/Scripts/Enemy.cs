@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     Rover rover;
-    private float damage = 1f;
+    private float damage = 3f;
     private float health = 10f;
     float chaseDistance = 0.3f;
     float attackDistance = 0.05f;
