@@ -19,7 +19,7 @@ public class Rover : MonoBehaviour
     float ammo = 100f;
 
     [SerializeField] private float movementSpeed = 1f;
-    RoverStatus roverStatus = RoverStatus.defending;
+    RoverStatus roverStatus = RoverStatus.neutral;
     private bool moving = false;
     private float posXStart;
     private float posYStart;
@@ -36,10 +36,14 @@ public class Rover : MonoBehaviour
 
     private EnemyDisplay enemyDisplay;
 
+    MapNoise map;
+
     void Start()
     {
+        map = GameObject.FindWithTag("Map").GetComponent<MapNoise>();
+
         enemyDisplay = transform.parent.GetComponent<EnemyDisplay>();
-        gameObject.transform.position = new Vector3(Random.Range(-.4f, .4f), Random.Range(-.4f, .4f), -1);
+        gameObject.transform.position = new Vector3(Random.Range(-.4f, .4f), Random.Range(-.4f, .4f), -3);
         gameObject.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
     }
 
@@ -89,6 +93,13 @@ public class Rover : MonoBehaviour
         float posYStart = gameObject.transform.position.y;
         roverStatus = RoverStatus.moving;
         moveDistance = x * 0.1f;
+    }
+
+    void WheelDamage()
+    {
+        float roverMapPosX = (gameObject.transform.position.x + .5f) * 200;
+        Debug.Log(roverMapPosX);
+        //map.heightMap 
     }
 
     public void Rotate(int degrees)

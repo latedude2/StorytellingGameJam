@@ -4,7 +4,7 @@ public class MapNoise : MonoBehaviour
 {
     private int width = 200;
     private int height = 200;
-    private float[,] heightMap = new float[200, 200];
+    [NonSerialized] public float[,] heightMap = new float[200, 200];
 
     public float bigFreqAmplitude = 1f;
     public float mediumFreqAmplitude = 1f;

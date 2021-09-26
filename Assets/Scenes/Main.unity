@@ -672,6 +672,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map
       objectReference: {fileID: 0}
+    - target: {fileID: 794399850626282288, guid: 790c4e654a741df44a782999e7c7445d, type: 3}
+      propertyPath: m_TagString
+      value: Map
+      objectReference: {fileID: 0}
     - target: {fileID: 794399850626282292, guid: 790c4e654a741df44a782999e7c7445d, type: 3}
       propertyPath: m_RootOrder
       value: 1
