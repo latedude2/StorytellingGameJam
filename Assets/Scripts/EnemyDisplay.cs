@@ -6,6 +6,12 @@ public class EnemyDisplay : MonoBehaviour
 {
     List<GameObject> enemyBlips = new List<GameObject>();
     [SerializeField] GameObject enemyBlipPrefab;
+    float scanTimer = 3f;
+
+    private void Start() {
+        InvokeRepeating(nameof(ShowEnemies), scanTimer, scanTimer);
+    }
+
 
     public void ShowEnemies()
     {
