@@ -182,7 +182,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8092630025432025542}
-  - component: {fileID: 2328923053147778977}
   - component: {fileID: 8808631606322346558}
   m_Layer: 0
   m_Name: RoverImage
@@ -205,20 +204,6 @@ Transform:
   m_Father: {fileID: 1291165188}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!114 &2328923053147778977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5235609994932178440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c02e2059683b7964ea91de18fa0966c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 0.1
-  rotationSpeed: 25
 --- !u!212 &8808631606322346558
 SpriteRenderer:
   m_ObjectHideFlags: 0
