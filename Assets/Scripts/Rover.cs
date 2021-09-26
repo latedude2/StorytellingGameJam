@@ -44,11 +44,13 @@ public class Rover : MonoBehaviour
 
     MapNoise map;
     Bloom robotCamGlow;
+    GameObject droneDisplay;
 
     void Start()
     {
         map = GameObject.FindWithTag("Map").GetComponent<MapNoise>();
         GameObject.FindWithTag("RoverCamGlow").GetComponent<PostProcessVolume>().profile.TryGetSettings(out robotCamGlow);
+        droneDisplay = GameObject.FindWithTag("DroneDisplay");
 
         enemyDisplay = transform.parent.GetComponent<EnemyDisplay>();
         gameObject.transform.position = new Vector3(Random.Range(-.4f, .4f), Random.Range(-.4f, .4f), -3);
@@ -65,6 +67,10 @@ public class Rover : MonoBehaviour
             {
                 WheelDamage();
                 speed *= terrainSpeedMod;
+                RotateDroneDisplay(Random.Range(-1f, 1f));
+            } else
+            {
+                RotateDroneDisplay(0f);
             }
             gameObject.transform.position += speed;
             
@@ -122,13 +128,21 @@ public class Rover : MonoBehaviour
     {
         terrainSpeedMod = TerrainValue()*2;
 
-        wheelHealth -= terrainSpeedMod * 0.02f;
+        wheelHealth -= terrainSpeedMod * 0.05f;
         if (wheelHealth < 0)
         {
             wheelHealth = 0;
+            ReceiveHullDamage(terrainSpeedMod*0.05f);
         }
 
         robotCamGlow.color.value = new Color(1-(wheelHealth/100),0+(wheelHealth/100),0);
+    }
+
+    void RotateDroneDisplay(float value)
+    {
+        //gameObject.transform.rotation.z = value;
+        //gameObject.transform.Rotate(Vector3.forward * Time.deltaTime);
+        droneDisplay.transform.Rotate(0, 0, value, Space.Self);
     }
 
     public void Rotate(int degrees)

@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Map
   - RoverCamGlow
+  - DroneDisplay
   layers:
   - Default
   - TransparentFX
