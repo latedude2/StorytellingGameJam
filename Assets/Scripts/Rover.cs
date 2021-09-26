@@ -21,8 +21,8 @@ public class Rover : MonoBehaviour
     [SerializeField] float ammo = 1000f;
 
     float combatDistance = 0.3f;
-    float attack = 1f;
-    float defenceMultiplier = 5f;
+    float attack = .3f;
+    float defenceMultiplier = 3f;
 
     [SerializeField] private float movementSpeed = 1f;
     private float terrainSpeedMod = 1f;
@@ -74,7 +74,7 @@ public class Rover : MonoBehaviour
         if (roverStatus == RoverStatus.moving)
         {
             Vector3 speed = gameObject.transform.up * movementSpeed * (.5f + wheelHealth/200) * Time.deltaTime;
-            if (TerrainValue() < .25f)
+            if (TerrainValue() < .4f)
             {
                 WheelDamage();
                 speed *= terrainSpeedMod;
@@ -157,12 +157,15 @@ public class Rover : MonoBehaviour
     void WheelDamage()
     {
         terrainSpeedMod = TerrainValue()*2;
+        
+        float terrainDamageMod = 1 / terrainSpeedMod;
 
-        wheelHealth -= terrainSpeedMod * 0.05f;
+        wheelHealth -= terrainDamageMod * .6f * Time.deltaTime;
+
         if (wheelHealth < 0)
         {
             wheelHealth = 0;
-            ReceiveHullDamage(terrainSpeedMod*0.05f);
+            ReceiveHullDamage(terrainDamageMod*.6f* Time.deltaTime) ;
         }
 
         robotCamGlow.color.value = new Color(1-(wheelHealth/100),0+(wheelHealth/100),0);
@@ -228,14 +231,14 @@ public class Rover : MonoBehaviour
 
     void FuelConsumption()
     {
-        fuel -= 0.001f;
+        fuel -= 0.1f * Time.deltaTime;
         if(roverStatus == RoverStatus.moving || rotating)
         {
-            fuel -= 0.002f;
+            fuel -= 0.2f * Time.deltaTime;
         }
         if (roverStatus == RoverStatus.defending) 
         {
-            fuel -= 0.004f;
+            fuel -= 0.3f * Time.deltaTime;
         }
         fsb.value = 9 - (int)(fuel / 10);
     }
