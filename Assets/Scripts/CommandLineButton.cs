@@ -40,10 +40,11 @@ public class CommandLineButton : MonoBehaviour
 
     IEnumerator SendCommandWithDelay()
     {
+        string myCommand = command;
         yield return new WaitForSeconds(commandDelay);
-        if(command != "")
+        if(myCommand != "")
         {
-            InterpretMessage(command);
+            InterpretMessage(myCommand);
         }
     }
 
@@ -56,7 +57,14 @@ public class CommandLineButton : MonoBehaviour
                     if(int.TryParse(arguments[1], out _))
                     {
                         int x = Int32.Parse(arguments[1]);
-                        MoveCommand(x);
+                        if(x >= 0)
+                        {
+                            MoveCommand(x);
+                        }
+                        else
+                        {
+                            PrintMessage("< Cannot move backwards!");
+                        }
                     }
                     else
                         PrintMessage("< Incorrect argument format!");
@@ -105,6 +113,7 @@ public class CommandLineButton : MonoBehaviour
     private void DefendCommand()
     {
         PrintMessage("< Rover defending.");
+        rover.DefensiveStance();
     }
 
     private void ScanCommand(string scanTarget)
@@ -146,7 +155,7 @@ public class CommandLineButton : MonoBehaviour
         return true;
     }
 
-    private void PrintMessage(string message)
+    public void PrintMessage(string message)
     {
         commandScreen.text += "\n";
         commandScreen.text += message;
