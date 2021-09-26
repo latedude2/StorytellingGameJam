@@ -42,12 +42,15 @@ public class Rover : MonoBehaviour
     private float prevAngle = 0;
     private float angleCounter = 0;
 
+    int RecentlyDamaged = 0;
+
     private EnemyDisplay enemyDisplay;
 
     MapNoise map;
     Bloom robotCamGlow;
     GameObject droneDisplay;
     Slider fsb, dsb, asb;
+    GameObject[] warningLights;
 
     float waterX;
     float waterY;
@@ -61,6 +64,7 @@ public class Rover : MonoBehaviour
         fsb = GameObject.FindWithTag("FSBSlider").GetComponent<Slider>();
         dsb = GameObject.FindWithTag("DSBSlider").GetComponent<Slider>();
         asb = GameObject.FindWithTag("ASBSlider").GetComponent<Slider>();
+        warningLights = GameObject.FindGameObjectsWithTag("WarningLights");
 
         enemyDisplay = transform.parent.GetComponent<EnemyDisplay>();
         float x = Random.Range(-40f, -20f) / 100;
@@ -118,6 +122,8 @@ public class Rover : MonoBehaviour
         }
 
         FuelConsumption();
+        WarningLights();
+        
 
         if(hullHealth < 5)
         {
@@ -197,6 +203,28 @@ public class Rover : MonoBehaviour
     public void ReceiveHullDamage(float damage){
         hullHealth -= damage;
         dsb.value = 9 - (int)(hullHealth / 10);
+
+        RecentlyDamaged = 300;
+    }
+
+    void WarningLights()
+    {
+        if (RecentlyDamaged > 0)
+        {
+            RecentlyDamaged--;
+
+            float sine = Mathf.PingPong(Time.time*6, 7);
+            foreach (GameObject warningLight in warningLights)
+            {
+                warningLight.GetComponent<Light>().intensity = sine;
+            }
+        } else
+        {
+            foreach (GameObject warningLight in warningLights)
+            {
+                warningLight.GetComponent<Light>().intensity = 0;
+            }
+        }
     }
 
     

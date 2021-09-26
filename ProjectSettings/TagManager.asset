@@ -12,6 +12,7 @@ TagManager:
   - FSBSlider
   - DSBSlider
   - ASBSlider
+  - WarningLights
   layers:
   - Default
   - TransparentFX
