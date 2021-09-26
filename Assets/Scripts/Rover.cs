@@ -6,10 +6,11 @@ public class Rover : MonoBehaviour
 {
     public enum RoverStatus
     {
-        defending = 1,
-        moving = 2,
-        scanningEnemy = 3,
-        scanningWater = 4
+        neutral = 1,
+        defending = 2,
+        moving = 3,
+        scanningEnemy = 4,
+        scanningWater = 5
     }
 
     float fuel = 100f;
@@ -48,10 +49,11 @@ public class Rover : MonoBehaviour
         {
             gameObject.transform.position += gameObject.transform.up * movementSpeed * Time.deltaTime;
             
-            float dist = Vector3.Distance(new Vector3(posXStart, posYStart, -1), transform.position);
+            float dist = Vector3.Distance(new Vector3(posXStart, posYStart, transform.position.z), transform.position);
             if (dist >= moveDistance)
             {
-                moving = false;
+                Debug.Log("Stopping");
+                roverStatus = RoverStatus.neutral;
             }
         }
 
@@ -75,6 +77,7 @@ public class Rover : MonoBehaviour
                 rotating = false;
             }
         }
+
         if(hullHealth < 0)
         {
             EndGameHull();
