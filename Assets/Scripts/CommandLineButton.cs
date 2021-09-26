@@ -138,7 +138,8 @@ public class CommandLineButton : MonoBehaviour
     }
 
     void ScanForMinerals(){
-        PrintMessage("< Rover scanning for minerals!");
+        PrintMessage("< Rover scanning for water!");
+        rover.ScanForWater();
     }
 
     private bool CheckArgumentCount(int actual, int expected)

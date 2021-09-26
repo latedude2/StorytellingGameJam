@@ -48,6 +48,9 @@ public class Rover : MonoBehaviour
     GameObject droneDisplay;
     Slider fsb, dsb, asb;
 
+    float waterX;
+    float waterY;
+
 
     void Start()
     {
@@ -61,6 +64,8 @@ public class Rover : MonoBehaviour
         enemyDisplay = transform.parent.GetComponent<EnemyDisplay>();
         gameObject.transform.position = new Vector3(Random.Range(-.4f, .4f), Random.Range(-.4f, .4f), -3);
         gameObject.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
+
+        GenerateWaterLocation();
     }
 
     void Update()
@@ -112,6 +117,12 @@ public class Rover : MonoBehaviour
         {
             EndGameHull();
         }
+    }
+
+    public void GenerateWaterLocation()
+    {
+        waterX = Random.Range(-0.4f, 0.4f);
+        waterY = Random.Range(-0.3f, 0.2f);
     }
 
     public void Move(int x)
@@ -203,7 +214,24 @@ public class Rover : MonoBehaviour
 
     public void ScanForWater(){
         roverStatus = RoverStatus.scanningWater;
+        float distanceToWater = Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(waterX, waterY));
+        Debug.Log("Distance to water: " + distanceToWater);
+        int percentage = 100 - (int)(100 *(distanceToWater / 2f));
+        if (percentage < 0)
+        {
+            percentage = 0;
+        }
+        if(percentage > 90) 
+        {
+            EndGameWin();
+        }
+        else{
+            GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Ground humidity: " + percentage + "%");
+        }
     }
     
-    
+    void EndGameWin()
+    {
+        GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Water spring detected!");
+    }
 }
