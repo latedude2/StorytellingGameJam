@@ -32,6 +32,7 @@ public class Rover : MonoBehaviour
     private float posXStart;
     private float posYStart;
     private float moveDistance;
+    private bool wheelBrokenMessageSent = false;
 
     [SerializeField] private float rotationSpeed = 1f;
     private bool rotating = false;
@@ -51,6 +52,7 @@ public class Rover : MonoBehaviour
     GameObject droneDisplay;
     Slider fsb, dsb, asb;
     GameObject[] warningLights;
+    GameObject warningNoise;
 
     float waterX;
     float waterY;
@@ -65,6 +67,7 @@ public class Rover : MonoBehaviour
         dsb = GameObject.FindWithTag("DSBSlider").GetComponent<Slider>();
         asb = GameObject.FindWithTag("ASBSlider").GetComponent<Slider>();
         warningLights = GameObject.FindGameObjectsWithTag("WarningLights");
+        warningNoise = GameObject.FindWithTag("WarningAudio");
 
         enemyDisplay = transform.parent.GetComponent<EnemyDisplay>();
         float x = Random.Range(-40f, -20f) / 100;
@@ -177,6 +180,12 @@ public class Rover : MonoBehaviour
 
         if (wheelHealth < 0)
         {
+            if(!wheelBrokenMessageSent)
+            {
+                GameObject.Find("Send").GetComponent<CommandLineButton>().PrintMessage("< Movement compromised. Hull damage imminent!");
+                wheelBrokenMessageSent = true;
+            }
+
             wheelHealth = 0;
             ReceiveHullDamage(terrainDamageMod*.6f* Time.deltaTime) ;
         }
@@ -213,6 +222,7 @@ public class Rover : MonoBehaviour
         {
             RecentlyDamaged--;
 
+            warningNoise.GetComponent<AudioSource>().mute = false;
             float sine = Mathf.PingPong(Time.time*6, 7);
             foreach (GameObject warningLight in warningLights)
             {
@@ -220,6 +230,7 @@ public class Rover : MonoBehaviour
             }
         } else
         {
+            warningNoise.GetComponent<AudioSource>().mute = true;
             foreach (GameObject warningLight in warningLights)
             {
                 warningLight.GetComponent<Light>().intensity = 0;

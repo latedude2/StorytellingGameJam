@@ -897,6 +897,85 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4788456386116111524, guid: 922f7473a20a52845a8075042315a181, type: 3}
   m_PrefabInstance: {fileID: 1360250605}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1265451888
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1341965769}
+    m_Modifications:
+    - target: {fileID: 2242397996563897999, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242397996563897999, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242397996563897999, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5c4b6cc9021d35b42918e4e24425aac0, type: 3}
+    - target: {fileID: 5927273780260922651, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927273780260922651, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927273780260922651, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927273780260922651, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.638857
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927273780260922651, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927273780260922651, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927273780260922651, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927273780260922651, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927273780260922651, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927273780260922651, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927273780260922651, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012250234611543398, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+      propertyPath: m_Name
+      value: MusicPlayer (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012250234611543398, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+      propertyPath: m_TagString
+      value: WarningAudio
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5246131327468537975, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+--- !u!4 &1265451889 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5927273780260922651, guid: 6ab02bf5dce275348b36f9bbc165c929, type: 3}
+  m_PrefabInstance: {fileID: 1265451888}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1341965768
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,8 +1005,9 @@ Transform:
   m_Children:
   - {fileID: 1447583265}
   - {fileID: 591310222}
+  - {fileID: 1265451889}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1360250605
 PrefabInstance:

@@ -13,6 +13,7 @@ TagManager:
   - DSBSlider
   - ASBSlider
   - WarningLights
+  - WarningAudio
   layers:
   - Default
   - TransparentFX
