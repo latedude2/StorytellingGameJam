@@ -1192,14 +1192,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 695862537}
     m_Modifications:
-    - target: {fileID: 7752343949283439256, guid: 05823122e5aedc348b14f721c8ee7005, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -216.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 7752343949322118475, guid: 05823122e5aedc348b14f721c8ee7005, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -216.94
-      objectReference: {fileID: 0}
     - target: {fileID: 7752343949356494644, guid: 05823122e5aedc348b14f721c8ee7005, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1287,34 +1279,6 @@ PrefabInstance:
     - target: {fileID: 7752343949356494645, guid: 05823122e5aedc348b14f721c8ee7005, type: 3}
       propertyPath: m_Name
       value: HelpMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 7752343949603275905, guid: 05823122e5aedc348b14f721c8ee7005, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -216.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 7752343950129417836, guid: 05823122e5aedc348b14f721c8ee7005, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -216.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 7752343950267440025, guid: 05823122e5aedc348b14f721c8ee7005, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -216.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 7752343950442060241, guid: 05823122e5aedc348b14f721c8ee7005, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -216.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 7752343950611230874, guid: 05823122e5aedc348b14f721c8ee7005, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -216.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 7752343950631460670, guid: 05823122e5aedc348b14f721c8ee7005, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -216.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 7752343950957263725, guid: 05823122e5aedc348b14f721c8ee7005, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -216.94
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05823122e5aedc348b14f721c8ee7005, type: 3}
