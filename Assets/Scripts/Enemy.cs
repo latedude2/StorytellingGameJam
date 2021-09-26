@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
     void Start() {
         rover = transform.parent.Find("Rover").GetComponent<Rover>();
         mapSize = 0.5f * transform.parent.localScale.x;
-        //rover = transform.parent.GetComponentInChildren<Rover>();
         Vector2 thrust = new Vector2(Random.Range(-speed, speed), (Random.Range(-speed, speed)));
         GetComponent<Rigidbody2D>().velocity = thrust.normalized * speed; 
     }
@@ -24,6 +23,7 @@ public class Enemy : MonoBehaviour
         WrapAroundMap();
         ChaseRover();
         Attack();
+        Die();
     }
     void WrapAroundMap(){
 
@@ -61,7 +61,19 @@ public class Enemy : MonoBehaviour
         Vector2 enemyPosition = new Vector2(transform.position.x, transform.position.y);
         if(Vector2.Distance(enemyPosition, roverPosition) < attackDistance)
         {
-            rover.ReceiveHullDamage(damage);
+            rover.ReceiveHullDamage(damage * Time.deltaTime);
+        }
+    }
+
+    public void TakeDamage(float attack){
+        health -= attack; 
+    }
+
+    void Die(){
+        if(health < 0f)
+        {
+            Debug.Log("Enemy destroyed");
+            Destroy(gameObject);
         }
     }
 }
